@@ -97,7 +97,7 @@
                 /* transform: rotate(180deg); */
             }
 
-            .container-featured, .container-team {
+            .container-featured, .container-team, .container-contact {
                 width: 100%;
                 height: auto;
                 margin-top: 20px;
@@ -106,7 +106,7 @@
                 text-align: center;
             }
 
-            .container-featured span, .container-team span {
+            .container-featured span, .container-team span, .container-contact .content span {
                 color: #AD9FB3;
                 font-family: Leckerli One;
                 font-size: 30px;
@@ -150,6 +150,77 @@
                 text-align: center;
             }
 
+            .container-contact {
+                background-color: #AD9FB3;
+                color: #F5F5F5;
+            }
+
+            .container-contact::before {
+                content: "";
+                width: 100%;
+                height: 241px;
+                position: absolute;
+                left: 0;
+                background-repeat: repeat-x;
+                background-position: top center;
+                background-image: url(assets/divider.png);
+                z-index: 0;
+                transform: rotate(180deg);
+            }
+
+            .container-contact::after {
+                content: "";
+                width: 100%;
+                height: 241px;
+                position: absolute;
+                left: 0;
+                margin-top: 650px;
+                background-repeat: repeat-x;
+                background-position: bottom center;
+                background-image: url(assets/divider.png);
+                z-index: 0;
+            }
+
+            .container-contact .content {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 35px;
+                text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                font-family: Leckerli One;
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 400;
+                color: #F5F5F5;
+                margin-top: 241px;
+                margin-bottom: 235px;
+                width: 100%;
+            }
+
+            .container-contact .content span {
+                color: #F5F5F5;
+            }
+
+            .container-contact .content form .text-feild {
+                width: 45%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 10px 5px rgba(0, 0, 0, 0.25);
+                resize: none;
+            }
+
+            .container-contact .content form .submit {
+                width: 45%;
+                padding: 10px;
+                background-color: #AD9FB3;
+                color: #FFF;
+                border: 1px solid #FFF;
+                border-radius: 10px;
+                box-shadow: 10px 5px rgba(0, 0, 0, 0.25);
+                margin-bottom: 20px;
+            }
+
             @media screen and (max-width: 600px) {
                 header {
                     text-align: center;
@@ -169,7 +240,7 @@
                     font-size: 15px;
                 }
 
-                .container-featured span, .container-team span {
+                .container-featured span, .container-team span, .container-contact .content span {
                     font-size: 15px;
                 }
                 .container-featured .featured-image {
@@ -188,19 +259,25 @@
                     height: 150px;
                     box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
                 }
+                .container-contact .content {
+                    margin-bottom: 180px;
+                }
+                .container-contact::after {
+                    margin-top: 600px;
+                }
             }
         </style>
     </head>
     <body>
         <header>
             <img src="assets/logo.png" width="250px" class="logo">
-            <a href="#" class="get-in-touch">Get in touch</a>
+            <a href="#get-in-touch" class="get-in-touch">Get in touch</a>
         </header>
         <div class="container-quote">
             <span>
                 Wearing your dream outfit on your wedding is still your dream?<br/><br/>
                 Let us help you<br/><br/>
-                <a href="#" class="get-in-touch"><button>Get in touch</button></a>
+                <a href="#get-in-touch" class="get-in-touch"><button>Get in touch</button></a>
             </span>
         </div>
         <div class="container-featured">
@@ -228,8 +305,23 @@
                 <div class="member">
                     
                 </div>
-            </div>
+            </div><br/><br/>
             <img src="assets/line-bottom.png" width="70%" />
+        </div>
+        <div class="container-contact" id="get-in-touch">
+            <div class="content">
+                <img src="assets/line-left-white.png" width="20%" />
+                <span>Get in touch</span>
+                <img src="assets/line-right-white.png" width="20%" /><br/><br/>
+                <form>
+                    <input type="text" placeholder="Name..." required class="text-feild" /><br/>
+                    <input type="text" placeholder="Mobile Number..." required class="text-feild" /><br/>
+                    <input type="text" placeholder="Email..." required class="text-feild" /><br/>
+                    <textarea placeholder="Message..." required class="text-feild"rows=4></textarea><br/>
+                    <input type="submit" value="Send" class="submit" />
+                </form>
+                <img src="assets/line-bottom-white.png" width="70%" />
+            </div>
         </div>
     </body>
 </html>

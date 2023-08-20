@@ -345,9 +345,9 @@
                 var mail = document.getElementById("mail").value;
                 var message = document.getElementById("message").value;
                 var content;
-                content = "Hey\nThis is " + name + ", " + message + "\nplease find the below mentioned contact details\n Mobile number : " + mobile;
+                content = "Hey this is " + name + ", " + message + " please find the mentioned contact details " + mobile;
                 if(mail != "") {
-                    content = "\n Mail : " + mail;
+                    content += ", " + mail;
                 }
                 url = "https://wa.me/918746084205?text=" + content;
                 window.open(url, "_blank");

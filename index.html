@@ -222,6 +222,7 @@
                 border-radius: 10px;
                 box-shadow: 10px 5px rgba(0, 0, 0, 0.25);
                 margin-bottom: 20px;
+                cursor: pointer;
             }
 
             .container-process .process {
@@ -327,22 +328,37 @@
                 <img src="assets/line-left-white.png" width="20%" />
                 <span>Get in touch</span>
                 <img src="assets/line-right-white.png" width="20%" /><br/><br/>
-                <form>
-                    <input type="text" placeholder="Name..." required class="text-feild" /><br/>
-                    <input type="text" placeholder="Mobile Number..." required class="text-feild" /><br/>
-                    <input type="text" placeholder="Email..." required class="text-feild" /><br/>
-                    <textarea placeholder="Message..." required class="text-feild"rows=4></textarea><br/>
+                <form onsubmit="wa_msg()">
+                    <input type="text" placeholder="Name..." required class="text-feild" id="name" /><br/>
+                    <input type="text" placeholder="Mobile Number..." required class="text-feild" id="mob" /><br/>
+                    <input type="text" placeholder="Email (optional)" class="text-feild" id="mail" /><br/>
+                    <textarea placeholder="Message..." required class="text-feild" rows=4 id="message" ></textarea><br/>
                     <input type="submit" value="Send" class="submit" />
                 </form>
                 <img src="assets/line-bottom-white.png" width="70%" />
             </div>
         </div>
+        <script lang="javascript">
+            function wa_msg() {
+                var name = document.getElementById("name").value;
+                var mobile = document.getElementById("mob").value;
+                var mail = document.getElementById("mail").value;
+                var message = document.getElementById("message").value;
+                var content;
+                content = "Hey\nThis is " + name + ", " + message + "\nplease find the below mentioned contact details\n Mobile number : " + mobile;
+                if(mail != "") {
+                    content = "\n Mail : " + mail;
+                }
+                url = "https://wa.me/918746084205?text=" + content;
+                window.open(url, "_blank");
+            }
+        </script>
         <div class="container-process">
             <img src="assets/line-left.png" width="20%" />
             <span>Our Process</span>
             <img src="assets/line-right.png" width="20%" /><br/><br/>
             <img src="assets/process.png" width="40%" class="process" /><br/><br/>
-            <img src="assets/line-bottom.png" width="70%" />
+            <!-- <img src="assets/line-bottom.png" width="70%" /> -->
         </div>
     </body>
 </html>

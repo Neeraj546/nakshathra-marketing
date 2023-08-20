@@ -13,6 +13,7 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
             @import url('https://fonts.googleapis.com/css2?family=Langar&family=Leckerli+One&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Langar&family=League+Spartan&family=Leckerli+One&display=swap');
             *{
                 margin: 0;
             }
@@ -229,6 +230,58 @@
                 margin: 20px 0 20px 0;
             }
 
+            .container-footer {
+                width: 100%;
+                height: 400px;
+                background-color: #AD9FB3;
+                text-align: center;
+            }
+
+            .container-footer .content {
+                margin-top: 250px;
+                position: absolute;
+                padding-left: 50px;
+                color: #6A5A71;
+                font-family: League Spartan;
+                font-size: 15px;
+                font-style: normal;
+                text-align: left;
+            }
+
+            .container-footer .content .header {
+                font-size: 25px;
+                font-weight: 600;
+            }
+
+            .container-footer .content .address {
+                font-size: 18px;
+                font-weight: 400;
+            }
+
+            .container-footer .content .address a{
+                text-decoration: none;
+                color: #6A5A71;
+            }
+
+            .container-footer::before {
+                content: "";
+                width: 100%;
+                height: 241px;
+                position: absolute;
+                left: 0;
+                background-repeat: repeat-x;
+                background-position: top center;
+                background-image: url(assets/divider.png);
+                z-index: 0;
+                transform: rotate(180deg);
+            }
+
+            .copyright {
+                padding: 10px;
+                text-align: center;
+                font-size: 15px;
+            }
+
             @media screen and (max-width: 600px) {
                 header {
                     text-align: center;
@@ -279,6 +332,23 @@
                 }
                 .container-process .process{
                     width: 65%;
+                }
+                .container-footer {
+                    height: 300px;
+                }
+                .container-footer .content {
+                    margin-top: 170px;
+                    padding-left: 20px;
+                }
+                .container-footer .content .header {
+                    font-size: 20px;
+                }
+                .container-footer .content .address {
+                    font-size: 15px;
+                }
+                .copyright {
+                    font-size: 10px;
+                    padding: 7px;
                 }
             }
         </style>
@@ -358,7 +428,19 @@
             <span>Our Process</span>
             <img src="assets/line-right.png" width="20%" /><br/><br/>
             <img src="assets/process.png" width="40%" class="process" /><br/><br/>
-            <!-- <img src="assets/line-bottom.png" width="70%" /> -->
+        </div>
+        <div class="container-footer">
+            <div class="content">
+                <span class="header">Visit us</span><br /><br />
+                <span class="address">
+                    #787 6th Cross, CK Nagar,<br />
+                    Hosa Road Bangalore 560 100<br /><br />
+                    <a href="mailto:wecare@nakshathradesignerboutique.in">wecare@nakshathradesignerboutique.in</a>
+                </span>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright © 2014-present <b>Nakshathra Designer Boutique</b>, Inc. All rights reserved
         </div>
     </body>
 </html>

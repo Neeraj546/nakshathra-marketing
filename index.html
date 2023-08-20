@@ -33,13 +33,14 @@
                 text-decoration: none;
             }
 
-            .container-quote{
+            .container-quote {
                 width: 100%;
                 height: calc( 100vh - 171px );
                 line-height: calc( 100vh - 171px );
                 background-color: #AD9FB3;
                 text-align: center;
             }
+
             .container-quote span {
                 display: inline-block;
                 vertical-align: middle;
@@ -96,6 +97,43 @@
                 /* transform: rotate(180deg); */
             }
 
+            .container-featured {
+                width: 100%;
+                height: auto;
+                margin-top: 20px;
+                /* line-height: calc( 100vh - 171px ); */
+                background-color: #FFF;
+                text-align: center;
+            }
+
+            .container-featured span {
+                color: #AD9FB3;
+                font-family: Leckerli One;
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 400;
+                padding: 0 10px 0 10px;
+            }
+
+            .container-featured .featured-image {
+                width: 35%;
+                padding: 20px 5% 20px 5%;
+            }
+
+            .container-slogan {
+                width: 100%;
+                height: auto;
+                background-color: #AD9FB3;
+                margin-top: 100px;
+                padding: 10px;
+                color: #F5F5F5;
+                font-family: Leckerli One;
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 400;
+                text-align: center;
+            }
+
             @media screen and (max-width: 600px) {
                 header {
                     text-align: center;
@@ -114,6 +152,17 @@
                 .container-quote span .get-in-touch button {
                     font-size: 15px;
                 }
+
+                .container-featured span {
+                    font-size: 15px;
+                }
+                .container-featured .featured-image {
+                    padding: 10px 5% 10px 5%;
+                }
+                .container-slogan {
+                    margin-top: 15px;
+                    height: auto;
+                }
             }
         </style>
     </head>
@@ -128,6 +177,17 @@
                 Let us help you<br/><br/>
                 <a href="#" class="get-in-touch"><button>Get in touch</button></a>
             </span>
+        </div>
+        <div class="container-featured">
+            <img src="assets/line-left.png" width="20%" />
+            <span>Featured Designs</span>
+            <img src="assets/line-right.png" width="20%" /><br/><br/>
+            <img src="assets/featured 1.jpg" class="featured-image featured-image-1" />
+            <img src="assets/featured 2.jpg" class="featured-image featured-image-1" /><br/><br/>
+            <img src="assets/line-bottom.png" width="70%" />
+        </div>
+        <div class="container-slogan">
+            "You comfort is our mission"
         </div>
     </body>
 </html>

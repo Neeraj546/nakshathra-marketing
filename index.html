@@ -12,6 +12,7 @@
         <title>Nakshathra Designer Boutique</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Langar&family=Leckerli+One&display=swap');
             *{
                 margin: 0;
             }
@@ -35,7 +36,35 @@
             .container-quote{
                 width: 100%;
                 height: calc( 100vh - 171px );
+                line-height: calc( 100vh - 171px );
                 background-color: #AD9FB3;
+                text-align: center;
+            }
+            .container-quote span {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 35px;
+                text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                font-family: Leckerli One;
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 400;
+                color: #F5F5F5;
+            }
+
+            .container-quote span .get-in-touch button {
+                background-color: #F5F5F5;
+                padding: 10px;
+                font-size: 20px;
+                text-decoration: none;
+                color: #AD9FB3;
+                border-radius: 0.5cm;
+                font-family: Langar;
+                font-style: normal;
+                font-weight: 400;
+                border: none;
+                box-shadow: 5px 10px rgba(0, 0, 0, 0.25);
+                cursor: pointer;
             }
 
             .container-quote::before {
@@ -84,7 +113,11 @@
             <a href="#" class="get-in-touch">Get in touch</a>
         </header>
         <div class="container-quote">
-
+            <span>
+                Wearing your dream outfit on your wedding is still your dream?<br/><br/>
+                Let us help you<br/><br/>
+                <a href="#" class="get-in-touch"><button>Get in touch</button></a>
+            </span>
         </div>
     </body>
 </html>

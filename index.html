@@ -384,9 +384,40 @@
                     padding: 7px;
                 }
             }
+            .success-alert{
+                background-color: rgba(0, 255, 76, 0.75);
+            }
+            .error-alert{
+                background-color: rgba(255, 17, 0, 0.5);
+            }
+            #alert{
+                position: fixed;
+                width: calc( 100% - 60px );
+                margin: 20px;
+                float: right;
+                padding: 10px;
+                color: #fff;
+                font-weight: 600;
+                z-index: 100;
+                display: none;
+            }
+            .closebtn{
+                font-weight: 600;
+                font-size: 30px;
+                cursor: pointer;
+                float: right;
+            }
+            #alert-message{
+                font-size: 16px;
+                line-height: 35px;
+            }
         </style>
     </head>
     <body>
+        <div class="error-alert" id='alert'>
+            <span class="closebtn" onclick="document.getElementById('alert').style.display='none';">&times;</span>
+            <span id="alert-message">Alert box</span>
+        </div>
         <header>
             <img src="assets/logo.png" width="250px" class="logo">
             <a href="#get-in-touch" class="get-in-touch">Get in touch</a>
@@ -437,7 +468,7 @@
                 <img src="assets/line-left-white.png" width="20%" />
                 <span>Get in touch</span>
                 <img src="assets/line-right-white.png" width="20%" /><br/><br/>
-                <!-- <form onsubmit="wa_msg()"> --><form>
+                <form onsubmit="create_lead()">
                     <input type="text" placeholder="Name..." required class="text-feild" id="name" /><br/>
                     <input type="text" placeholder="Mobile Number..." required class="text-feild" id="mob" /><br/>
                     <input type="text" placeholder="Email (optional)" class="text-feild" id="mail" /><br/>
@@ -448,18 +479,36 @@
             </div>
         </div>
         <script lang="javascript">
-            function wa_msg() {
+            function create_lead() {
                 var name = document.getElementById("name").value;
                 var mobile = document.getElementById("mob").value;
                 var mail = document.getElementById("mail").value;
                 var message = document.getElementById("message").value;
-                var content;
-                content = "Hey this is " + name + ", " + message + " please find the mentioned contact details " + mobile;
-                if(mail != "") {
-                    content += ", " + mail;
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "https://api.nakshathradesignerboutique.in/v1/leads/");
+                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                const body = JSON.stringify({
+                    name: name,
+                    email: mail,
+                    contact: mobile,
+                    message: message
+                });
+                var alert_box = document.getElementById('alert');
+                var alert_message = document.getElementById('alert-message');
+                xhr.onload = () => {
+                if (xhr.readyState == 4 && xhr.status == 201) {
+                    console.log(JSON.parse(xhr.responseText));
+                    alert_box.className = 'success-alert';
+                    document.getElementById('alert').style.display='block';
+                    alert_message.innerHTML = "Thank you for your interest, we will get back to you.";
+                } else {
+                    console.log(`Error: ${xhr.status}`);
+                    alert_box.className = 'error-alert';
+                    document.getElementById('alert').style.display='block';
+                    alert_message.innerHTML = "Something went wrong!";
                 }
-                url = "https://wa.me/918746084205?text=" + content;
-                window.open(url, "_blank");
+                };
+                xhr.send(body);
             }
         </script>
         <div class="container-process">
@@ -472,7 +521,7 @@
             <div class="content">
                 <span class="header">Visit us</span><br /><br />
                 <span class="address">
-                    #787 6th Cross, CK Nagar,<br />
+                    4th Cross, CK Nagar,<br />
                     Hosa Road Bangalore 560 100<br /><br />
                     <a href="mailto:wecare@nakshathradesignerboutique.in">wecare@nakshathradesignerboutique.in</a>
                 </span>

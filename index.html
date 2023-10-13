@@ -411,9 +411,65 @@
                 font-size: 16px;
                 line-height: 35px;
             }
+            .loader{
+                background-color: rgba(255, 255, 255, .75);
+                width: 100%;
+                position: fixed;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                z-index: 100;
+                display: none;
+            }
+            .loader-content{
+                /* background-color: #000; */
+                width: 50px;
+                height: 50px;
+                transform-origin: bottom center;
+                animation: rotate 3s linear infinite;
+            }
+            .circle{
+                background-color: #8C52FF;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: inline-block;
+                animation: grow 1.5s linear infinite;
+                transform: scale(0);
+                z-index: 110;
+            }
+            .circle:nth-child(2){
+                background-color: #FF66C4;
+                animation-delay: .75s;
+            }
+            .circle:nth-child(3){
+                animation-delay: 1s;
+            }
+
+            @keyframes rotate {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes grow{
+                50% {
+                    transform: scale(0.75);
+                }
+            }
         </style>
     </head>
     <body>
+        <div class="loader" id="loader">
+            <center>
+                <div className='loader-content'>
+                    <div className='circle'></div>
+                    <div className='circle'></div>
+                </div>
+            </center>
+        </div>
         <div class="error-alert" id='alert'>
             <span class="closebtn" onclick="document.getElementById('alert').style.display='none';">&times;</span>
             <span id="alert-message">Alert box</span>
@@ -470,7 +526,7 @@
                 <img src="assets/line-right-white.png" width="20%" /><br/><br/>
                 <form onsubmit="create_lead()">
                     <input type="text" placeholder="Name..." required class="text-feild" id="name" /><br/>
-                    <input type="text" placeholder="Mobile Number..." required class="text-feild" id="mob" /><br/>
+                    <input type="text" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Mobile Number..." required class="text-feild" id="mob" /><br/>
                     <input type="text" placeholder="Email (optional)" class="text-feild" id="mail" /><br/>
                     <textarea placeholder="Message..." required class="text-feild" rows=4 id="message" ></textarea><br/>
                     <input type="submit" value="Send" class="submit" />
@@ -480,12 +536,14 @@
         </div>
         <script lang="javascript">
             function create_lead() {
+                var loader = document.getElementById("name");
+                loader.style.display = 'block';
                 var name = document.getElementById("name").value;
                 var mobile = document.getElementById("mob").value;
                 var mail = document.getElementById("mail").value;
                 var message = document.getElementById("message").value;
                 const xhr = new XMLHttpRequest();
-                xhr.open("POST", "https://api.nakshathradesignerboutique.in/v1/leads/");
+                xhr.open("get", "https://api.nakshathradesignerboutique.in/v1/leads/");
                 xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
                 const body = JSON.stringify({
                     name: name,
@@ -496,6 +554,7 @@
                 var alert_box = document.getElementById('alert');
                 var alert_message = document.getElementById('alert-message');
                 xhr.onload = () => {
+                    loader.style.display = 'none';
                 if (xhr.readyState == 4 && xhr.status == 201) {
                     console.log(JSON.parse(xhr.responseText));
                     alert_box.className = 'success-alert';

@@ -479,6 +479,23 @@
             </div>
         </div>
         <script lang="javascript">
+            async function postData(url = "", data = {}, method = "") {
+                var header = {
+                    "Content-Type": "application/json; charset=UTF-8"
+                }
+                const response = await fetch(url, {
+                    method: method,
+                    mode: "cors",
+                    cache: "no-cache",
+                    credentials: "same-origin",
+                    headers: header,
+                    redirect: "follow",
+                    referrerPolicy: "no-referrer",
+                    body: JSON.stringify(data)
+                });
+                return response;
+            }
+
             function create_lead() {
                 var name = document.getElementById("name");
                 var mobile = document.getElementById("mob");
@@ -488,34 +505,56 @@
                 submitButton.value = "Sending...";
                 const xhr = new XMLHttpRequest();
                 submitButton.disabled = true;
-                xhr.open("POST", "https://api.nakshathradesignerboutique.in/v1/leads/");
-                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                const body = JSON.stringify({
+                var api_url = "https://api.nakshathradesignerboutique.in/v1/leads/";
+                // xhr.open("POST", api_url);
+                // xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                const body = {
                     name: name.value,
                     email: mail.value,
                     contact: mobile.value,
                     message: message.value
-                });
+                };
                 var alert_box = document.getElementById('alert');
                 var alert_message = document.getElementById('alert-message');
-                xhr.onload = () => {
-                if (xhr.readyState == 4 && xhr.status == 201) {
-                    console.log(JSON.parse(xhr.responseText));
-                    alert_box.className = 'success-alert';
-                    document.getElementById('alert').style.display='block';
-                    alert_message.innerHTML = "Thank you for your interest, we will get back to you.";
-                    name.value = "";
-                    mail.value = "";
-                    mobile.value = "";
-                    message.value = "";
-                } else {
-                    console.log(`Error: ${xhr.status}`);
+
+                // xhr.onload = () => {
+                // if (xhr.readyState == 4 && xhr.status == 201) {
+                //     console.log(JSON.parse(xhr.responseText));
+                //     alert_box.className = 'success-alert';
+                //     document.getElementById('alert').style.display='block';
+                //     alert_message.innerHTML = "Thank you for your interest, we will get back to you.";
+                //     name.value = "";
+                //     mail.value = "";
+                //     mobile.value = "";
+                //     message.value = "";
+                // } else {
+                //     console.log(`Error: ${xhr.status}`);
+                //     alert_box.className = 'error-alert';
+                //     document.getElementById('alert').style.display='block';
+                //     alert_message.innerHTML = "Something went wrong!";
+                // }
+                // };
+                // xhr.send(body);
+                postData(api_url, body, "POST").then((response) => {
+                    if(response.status == 201){
+                        alert_box.className = 'success-alert';
+                        document.getElementById('alert').style.display='block';
+                        alert_message.innerHTML = "Thank you for your interest, we will get back to you.";
+                        name.value = "";
+                        mail.value = "";
+                        mobile.value = "";
+                        message.value = "";
+                    }else{
+                        alert_box.className = 'error-alert';
+                        document.getElementById('alert').style.display='block';
+                        alert_message.innerHTML = "Something went wrong!";
+                    }
+                })
+                .catch(err => {
                     alert_box.className = 'error-alert';
                     document.getElementById('alert').style.display='block';
                     alert_message.innerHTML = "Something went wrong!";
-                }
-                };
-                xhr.send(body);
+                });
                 submitButton.value = "Send";
                 submitButton.disabled = false;
             }
